@@ -11,6 +11,31 @@ Paper: [MDPI Paper](https://www.mdpi.com/2079-9292/15/6/1312)
 
 This repository is a landing page for the published paper. The work addresses a practical deployment problem in edge LLM inference: low-power NPUs are efficient at integer and fixed-point tensor algebra, but they typically do not provide native exponential support, making softmax a repeated runtime bottleneck inside Transformer attention.
 
+## Repository Structure
+
+```text
+AIChip-NPU-Softmax/
+├── LICENSE
+├── README.md
+├── code/
+│   ├── README.md
+│   ├── requirements.txt
+│   ├── configs/
+│   │   └── encodings/
+│   ├── scripts/
+│   │   ├── collector/
+│   │   ├── emulation/
+│   │   └── pso/
+│   └── workdir/              # generated locally, gitignored
+└── img/
+```
+
+## Code
+
+All runnable scripts, the TinyLlama encoding asset, and the reproducible workflow guide live under [code/](./code). Generated outputs are written under `code/workdir/`. For setup, workflow steps, and command examples, use [code/README.md](./code/README.md).
+
+This repository uses Git LFS for `code/configs/encodings/*.encodings`. Install Git LFS before cloning or pulling, or run `git lfs pull` after checkout if the encoding asset is not materialized locally.
+
 ## Overview
 
 Existing hardware-aware softmax approximations usually choose one of two extremes. Uniform piecewise polynomial designs preserve constant-time indexing, but they spend the same arithmetic budget everywhere, even where attention probabilities are negligible. Fully adaptive approximations better match real attention statistics, but they often depend on comparator-heavy boundary search, BST traversal, or architectural support that is awkward to integrate into existing NPU inference paths.

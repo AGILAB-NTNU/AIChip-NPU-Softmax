@@ -1,0 +1,8 @@
+numpy>=2.0,<3.0
+matplotlib>=3.8,<4.0
+pyswarms>=1.3,<2.0
+tqdm>=4.66,<5.0
+datasets>=4.6,<5.0
+transformers>=4.57,<4.58
+huggingface-hub>=0.34.0,<1.0
+torch>=2.8,<2.9
